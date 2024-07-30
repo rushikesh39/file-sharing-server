@@ -9,6 +9,13 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+// CORS configuration
+app.use(cors({
+    origin: '*', // Update this to match your frontend's URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/users', userRoutes);
